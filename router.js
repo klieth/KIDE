@@ -52,5 +52,10 @@ exports.route = function(pathname, opts) {
 		return;
 	}
 	console.log("Serving with handler " + dir[1] + "()");
-	Handler[dir[1]](dir, opts);
+	try {
+		Handler[dir[1]](dir, opts);
+	} catch (e) {
+		console.log(dir[1] + " is not a recognized operation/location");
+		response.end("error");
+	}
 }
